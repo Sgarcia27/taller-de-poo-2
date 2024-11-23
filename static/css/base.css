@@ -1,0 +1,239 @@
+.sidebar {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #020b2e, #05154a);
+  box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+  color: #ecf0f1;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar .nav_section-title {
+  color: #ecf0f1;
+  font-weight: bold;
+  padding: 15px 20px;
+  margin: 15px 0 10px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+}
+
+.sidebar .nav_list {
+  margin-left: 10px;
+}
+
+.sidebar .nav-link {
+  color: #bdc3c7;
+  font-size: 14px;
+  transition: all 0.3s;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.sidebar .nav-link i {
+  font-size: 18px;
+  color: #95a5a6;
+  transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(52, 152, 219, 0.2);
+  transform: translateX(10px);
+  color: #ffffff;
+}
+
+.sidebar .nav-link:hover i {
+  color: #3498db;
+}
+
+.sidebar .nav-link.active {
+  background: rgba(52, 152, 219, 0.3);
+  color: #ffffff;
+  font-weight: bold;
+}
+.nav_section {
+  margin-bottom: 20px;
+}
+
+.nav_section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ecf0f1;
+  background: rgba(52, 152, 219, 0.2);
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.nav_section-header i {
+  font-size: 18px;
+  color: #3498db;
+}
+
+.nav_list {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.nav_link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #bdc3c7;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.nav_link:hover {
+  background: rgba(52, 152, 219, 0.2);
+  color: #ffffff;
+}
+
+.nav_link i {
+  font-size: 16px;
+  color: #95a5a6;
+  transition: all 0.3s;
+}
+
+.nav_link:hover i {
+  color: #3498db;
+}
+
+/* Header general */
+/* Header general con borde */
+.navbar-dark {
+  background: linear-gradient(45deg, #2c3e50, #34495e);
+  border: 3px solid rgba(52, 152, 219, 0.5); /* Borde visible */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+  margin: 10px; /* Espaciado para que el borde no quede pegado */
+}
+
+/* Marca del Navbar */
+.navbar-brand {
+  font-size: 1.6rem;
+  color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+.navbar-brand:hover {
+  color: #bdc3c7;
+  transform: scale(1.1);
+}
+
+/* Botón de colapso (Responsive) */
+.navbar-toggler {
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Estilos del menú */
+.navbar-nav {
+  font-size: 14px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #ecf0f1;
+  padding: 10px 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  background: rgba(52, 152, 219, 0.3);
+  color: #ffffff;
+}
+
+/* Dropdown del usuario */
+.nav-item.dropdown .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #ecf0f1;
+  transition: color 0.3s ease;
+}
+
+.nav-item.dropdown .dropdown-toggle:hover {
+  color: #bdc3c7;
+}
+
+.nav-item.dropdown img {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: border 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item.dropdown img:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Dropdown menú */
+.dropdown-menu {
+  background: #2c3e50;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu .dropdown-item {
+  color: #ecf0f1;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background: rgba(52, 152, 219, 0.3);
+  color: #ffffff;
+}
+
+.dropdown-menu .dropdown-item i {
+  font-size: 16px;
+  color: #95a5a6;
+  margin-right: 8px;
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover i {
+  color: #ecf0f1;
+}
+
+.list-group-item {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.list-group-item .fa-tag {
+  font-size: 0.8rem;
+}

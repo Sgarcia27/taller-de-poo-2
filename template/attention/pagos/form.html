@@ -1,0 +1,32 @@
+{% extends "components/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Nuevo Pago</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_paciente" class="form-label">Paciente:</label>
+            {{ form.paciente }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_costo_atencion" class="form-label">Costo Atención:</label>
+            {{ form.costo_atencion }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_metodo_pago" class="form-label">Método de Pago:</label>
+            {{ form.metodo_pago }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_servicios" class="form-label">Servicios Adicionales:</label>
+            {{ form.servicios }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'attention:pago_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

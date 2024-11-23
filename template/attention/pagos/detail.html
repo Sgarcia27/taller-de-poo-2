@@ -1,0 +1,31 @@
+{% extends "components/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Detalle del Pago</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Paciente:</strong> {{ pago.paciente }}</li>
+        <li class="list-group-item"><strong>Costo Atención:</strong> {{ pago.costo_atencion }}</li>
+        <li class="list-group-item"><strong>Método de Pago:</strong> {{ pago.metodo_pago }}</li>
+        <li class="list-group-item"><strong>Pagado:</strong> 
+            {% if pago.pagado %}
+                Sí
+            {% else %}
+                No
+            {% endif %}
+        </li>
+        <li class="list-group-item"><strong>Fecha de Pago:</strong> {{ pago.fecha_pago }}</li>
+        <li class="list-group-item"><strong>Servicios Adicionales:</strong> 
+            {% for servicio in pago.servicios_adicionales.all %}
+                {{ servicio.nombre_servicio }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </li>
+        <li class="list-group-item"><strong>Exámenes Médicos:</strong> 
+            {% for examen in pago.examenes_medicos.all %}
+                {{ examen.nombre_examen }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </li>
+    </ul>
+    <a href="{% url 'attention:pago_list' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}

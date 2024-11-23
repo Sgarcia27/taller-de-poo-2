@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 px-0 sidebar">
+          <div class="text-center py-1">
+            <div
+              class="d-flex flex-row justify-content-center align-items-center text-center"
+            >
+              <img
+                src="{% static 'img/1.png' %}"
+                alt="Logo"
+                class="mb-3 rounded-circle"
+                width="170px"
+              />
+            </div>
+            <h5 class="text-white">
+              SaludSync
+              
+            </h5>
+          </div>
+          <nav class="nav flex-column mt-4">
+            {% if request.user.is_authenticated %}
+              {% for menu_wrapper in menu_list %}
+              <div class="nav_section">
+                <div class="nav_section-header">
+                  <i class="{{ menu_wrapper.menu.icon }} nav_section-icon"></i>
+                  <span>{{ menu_wrapper.menu.name }}</span>
+                </div>
+                <div class="nav_list">
+                  {% for group_modulo_permission in menu_wrapper.group_module_permission_list %}
+                  <a
+                    href="{{ group_modulo_permission.module.url }}"
+                    class="nav_link"
+                  >
+                    <i
+                      class="{{ group_modulo_permission.module.icon }} nav_section-icon"
+                    ></i>
+                    <span class="nav_name"
+                      >{{ group_modulo_permission.module.name }}</span
+                    >
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endfor %}
+            {% endif %}
+          </nav>
+        </div>
+
+        <div class="col-md-9 col-lg-10 px-md-4 main-content">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3 shadow-sm">
+            <div class="container-fluid">
+              <!-- Título o logo -->
+              <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'core:home' %}">
+                <i class="fas fa-home fs-4"></i>
+                <span class="fw-bold">{{ title }}</span>
+              </a>
+          
+              <!-- Botón de colapso (Responsive) -->
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <!-- Contenido del header -->
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                  {% if request.user.is_authenticated %}
+                    <!-- Dropdown Usuario -->
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle d-flex align-items-center text-white"
+                        href="#"
+                        id="userDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                      <img
+                      src="{% if request.user.image %}{{ request.user.image.url }}{% else %}{% static 'img/usuario_anonimo.png' %}{% endif %}"
+                      alt="Foto Usuario"
+                      class="rounded-circle me-2"
+                      width="30px"
+                      height="30px"
+                    />
+                        <span class="fw-bold">{{ request.user.get_full_name }}</span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li>
+                          <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'security:profile' %}">
+                            <i class="fas fa-user-circle"></i> Perfil
+                          </a>
+                        </li>
+                        <li class="dropdown-item">
+                          <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-users"></i> 
+                            <span class="fw-bold">Tus Grupos:</span>
+                          </div>
+                          <ul class="list-group mt-2">
+                            {% for group in group_list %}
+                            <li class="list-group-item list-group-item-light border-0 py-1 ps-4">
+                              <a 
+                                class="text-decoration-none text-dark d-flex align-items-center gap-2" 
+                                href="{% url 'core:home' %}?gpid={{ group.id }}">
+                                <i class="fas fa-tag text-primary"></i> {{ group.name|upper }}
+                              </a>
+                            </li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                        <li>
+                          <form method="post" action="{% url 'security:logout' %}" class="m-0">
+                            {% csrf_token %}
+                            <button class="dropdown-item d-flex align-items-center gap-2" type="submit">
+                              <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                      
+                      
+                    </li>
+                  {% else %}
+                    <!-- Botón para iniciar sesión -->
+                    <li class="nav-item">
+                      <a href="{% url 'security:custom_login' %}" class="btn btn-outline-light ms-3">Iniciar Sesión</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav>
+          
+          
+          
+
+          <!-- Content Block -->
+          <div class="module-content">
+            {% block content %}
+            <div class="container py-5">
+              <div class="text-center mb-4">
+                <h1 class="fw-bold">{{ title }}</h1>
+                <p class="lead">
+                  Bienvenido a nuestro sistema. Aquí podrás gestionar y analizar tus datos de manera eficiente y segura.
+                </p>
+              </div>
+
+              <div class="row g-4">
+                <!-- Característica 1 -->
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                      <i class="fas fa-brain fs-1 text-primary mb-3"></i>
+                      <h5 class="card-title fw-bold">Análisis Avanzado</h5>
+                      <p class="card-text">
+                        Realiza análisis detallados de resonancias magnéticas con tecnología de IA que detecta anomalías de manera precisa.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Característica 2 -->
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                      <i class="fas fa-file-medical-alt fs-1 text-success mb-3"></i>
+                      <h5 class="card-title fw-bold">Gestión de Informes</h5>
+                      <p class="card-text">
+                        Genera y administra informes médicos personalizados para especialistas y pacientes, con gráficos interactivos.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Característica 3 -->
+                <div class="col-md-4">
+                  <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                      <i class="fas fa-user-shield fs-1 text-danger mb-3"></i>
+                      <h5 class="card-title fw-bold">Seguridad de Datos</h5>
+                      <p class="card-text">
+                        Tus datos están protegidos con los más altos estándares de seguridad, asegurando confidencialidad y privacidad.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center mt-5">
+                <a href="{% url 'core:dashboard' %}" class="btn btn-primary btn-lg">
+                  Explorar el Dashboard
+                </a>
+              </div>
+            </div>
+            {% endblock %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% block js %}{% endblock %}
+  </body>
+</html>

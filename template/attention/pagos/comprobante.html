@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobante de Pago</title>
+</head>
+<body>
+    <h1>Comprobante de Pago</h1>
+    <p><strong>Paciente:</strong> {{ nombre_completo_paciente }}</p>
+    <p><strong>Total Pagado:</strong> {{ total_pagado }}</p>
+    <p><strong>Servicios Adicionales:</strong></p>
+    <ul>
+        {% for servicio in servicios_adicionales %}
+            <li>{{ servicio.nombre_servicio }} - {{ servicio.costo_servicio }}</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Exámenes Médicos:</strong></p>
+    <ul>
+        {% for examen in examenes_medicos %}
+            <li>{{ examen.nombre_examen }} - {{ examen.precio_examen }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
